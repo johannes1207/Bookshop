@@ -1,0 +1,2 @@
+INSERT INTO Book_TB (title, author, publishingYear, editor) VALUES
+  ('lala', 'lala', 2011, 'Verlag');
