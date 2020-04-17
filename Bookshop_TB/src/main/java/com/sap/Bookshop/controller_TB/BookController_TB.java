@@ -60,10 +60,9 @@ public class BookController_TB {
 		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.sortTitles(), HttpStatus.OK);
 	}
 	
-	@PutMapping(path = "/book", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Book_TB>> saveBook(@RequestBody Book_TB book) {
-		return new ResponseEntity<List<Book_TB>>(HttpStatus.OK);
-		
+	@PutMapping (path= "/book", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity save(@RequestBody Book_TB book) {
+		return new ResponseEntity(bookService_TB.updateBook(book), HttpStatus.OK);
 	}
 	@PostMapping (path= "/book", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity updateBook(@RequestBody Book_TB book) {

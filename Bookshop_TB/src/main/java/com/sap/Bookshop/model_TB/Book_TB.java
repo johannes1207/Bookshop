@@ -29,26 +29,26 @@ public class Book_TB {
 	private int uuid;
 	
 	@Column(name = "ISBN")
-	private int ISBN = 1234;
+	private int ISBN;
 	
 	
 	@Column(name = "TITLE")
-	private String title= "Es";
+	private String title;
 	
 	@Column(name = "AUTHOR")
-	private String author= "Stephen King";
+	private String author;
 	
 	@Column(name = "PUBYEAR")
-	private int publishingYear = 2019;
+	private int publishingYear;
 	
 	@Column(name = "EDITOR")
-	private String editor = "DTBV";
+	private String editor;
 	
 	@Column(name = "PRICE")
-	private double price = 20.5;
+	private double price;
 	
 	@Column(name = "NUMBER_OF_ITEMS")
-	private int numberOfItems = 199;
+	private int numberOfItems;
 	
 
 	
