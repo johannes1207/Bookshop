@@ -74,10 +74,6 @@ public class BookController_TB {
 		bookRepository_TB.deleteById(isbn);
 		return null;
 	}
-//	@GetMapping(path = "/costumer", produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<List<Book_TB>> costumer(){
-//		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findProjects(), HttpStatus.OK);
-//	}
 	
 	@GetMapping(path = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<BookDTO>> costumer(){

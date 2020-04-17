@@ -1,0 +1,3 @@
+INSERT INTO BOOK_TABLE (ISBN, TITLE, AUTHOR, PUBYEAR, EDITOR, PRICE, NUMBER_OF_ITEMS) VALUES
+  (1234, 'Buchtitel', 'Autor', 2000, 'Verlag', 2.99, 10),
+  (4321, 'Buchtitel2', 'Autor2', 1000, 'Verlag2', 9.99, 100);
