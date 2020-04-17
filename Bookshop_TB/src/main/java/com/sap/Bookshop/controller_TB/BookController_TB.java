@@ -27,9 +27,11 @@ public class BookController_TB {
 	
 	
 	private final BookService_TB bookService_TB;
+	private final BookRepository_TB bookRepository_TB;
 	
-	public BookController_TB(BookService_TB bookService_TB) {
+	public BookController_TB(BookService_TB bookService_TB, BookRepository_TB bookRepository_TB) {
 		this.bookService_TB = bookService_TB;
+		this.bookRepository_TB = bookRepository_TB;
 		bookService_TB.save(new Book_TB());
 		bookService_TB.save(new Book_TB());
 		
@@ -50,22 +52,16 @@ public class BookController_TB {
 		return new ResponseEntity(bookService_TB.updateBook(book), HttpStatus.OK);
 	}
 	
-//	@DeleteMapping (path = "/book/{isbn}")
-//	public ResponseEntity removeBook(@PathVariable String isbn) {
-//		return null;
-//		
-//	}
-	
-	@RequestMapping(
-			method = RequestMethod.DELETE,
-			path = "/book/{ISBN}"
-			)
-	public void deleteBook(@PathVariable("ISBN") String ISBN) {
-		BookRepository_TB.deleteById(ISBN);
+	@DeleteMapping (path = "/book/{isbn}")
+	public ResponseEntity<?> deleteBook(@PathVariable int isbn) {
+		bookRepository_TB.deleteById(isbn);
+		return null;
+		
 	}
-	
-	
-	
+	@GetMapping(path = "/costumer", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Book_TB>> costumer(){
+		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findProjects(), HttpStatus.OK);
+	}
 	
 
 }

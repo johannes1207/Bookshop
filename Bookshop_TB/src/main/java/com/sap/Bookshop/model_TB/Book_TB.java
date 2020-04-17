@@ -6,10 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString
+@NoArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "BOOK_TABLE")
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class Book_TB {
 	
 	
@@ -19,7 +29,7 @@ public class Book_TB {
 	private int uuid;
 	
 	@Column(name = "ISBN")
-	private String ISBN = "1234";
+	private int ISBN = 1234;
 	
 	
 	@Column(name = "TITLE")
