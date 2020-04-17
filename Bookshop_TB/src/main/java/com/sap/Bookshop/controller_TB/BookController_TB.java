@@ -39,7 +39,7 @@ public class BookController_TB {
 	
 	@GetMapping(path = "/book", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Book_TB>> books(){
-		return new ResponseEntity<List<Book_TB>>(bookService_TB.getAll(), HttpStatus.OK);
+		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.sortTitles(), HttpStatus.OK);
 	}
 	
 	@PutMapping(path = "/book", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -56,12 +56,16 @@ public class BookController_TB {
 	public ResponseEntity<?> deleteBook(@PathVariable int isbn) {
 		bookRepository_TB.deleteById(isbn);
 		return null;
-		
 	}
 	@GetMapping(path = "/costumer", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Book_TB>> costumer(){
 		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findProjects(), HttpStatus.OK);
 	}
 	
+	@GetMapping (path = "/author/{author}")
+	public ResponseEntity findAuthor(@PathVariable String author) {
+		//bookRepository_TB.findAuthor(author);
+		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findAuthor(author), HttpStatus.OK);
+	}
 
 }
