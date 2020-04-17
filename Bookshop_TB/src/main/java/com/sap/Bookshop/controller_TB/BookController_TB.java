@@ -1,7 +1,11 @@
 package com.sap.Bookshop.controller_TB;
 
+import java.awt.print.Book;
+import java.text.ParseException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sap.Bookshop.DTO.BookDTO;
 import com.sap.Bookshop.model_TB.Book_TB;
 import com.sap.Bookshop.repository.BookRepository_TB;
 import com.sap.Bookshop.service.BookService_TB;
@@ -25,16 +30,29 @@ import com.sap.Bookshop.service.BookService_TB;
 @RequestMapping("/api/v1")
 public class BookController_TB {
 	
-	
+
+    private ModelMapper modelMapper;
 	private final BookService_TB bookService_TB;
 	private final BookRepository_TB bookRepository_TB;
 	
-	public BookController_TB(BookService_TB bookService_TB, BookRepository_TB bookRepository_TB) {
+	
+	public BookController_TB(BookService_TB bookService_TB, BookRepository_TB bookRepository_TB, ModelMapper modelMapper) {
 		this.bookService_TB = bookService_TB;
 		this.bookRepository_TB = bookRepository_TB;
+		this.modelMapper = modelMapper;
 		bookService_TB.save(new Book_TB());
 		bookService_TB.save(new Book_TB());
 		
+	}
+	
+	private BookDTO convertToDto(Book_TB book) {
+		BookDTO bookDto = modelMapper.map(book, BookDTO.class);
+		return bookDto;
+	}
+	
+	private Book_TB convertToEntity(BookDTO bookDto) throws ParseException{
+		Book_TB book = modelMapper.map(bookDto, Book_TB.class);
+		return book;
 	}
 	
 	@GetMapping(path = "/book", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,9 +75,16 @@ public class BookController_TB {
 		bookRepository_TB.deleteById(isbn);
 		return null;
 	}
-	@GetMapping(path = "/costumer", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Book_TB>> costumer(){
-		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findProjects(), HttpStatus.OK);
+//	@GetMapping(path = "/costumer", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<List<Book_TB>> costumer(){
+//		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findProjects(), HttpStatus.OK);
+//	}
+	
+	@GetMapping(path = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BookDTO>> costumer(){
+		return new ResponseEntity<List<BookDTO>>(bookService_TB.getAll().stream().map(this::convertToDto).collect(Collectors.toList()),
+				
+				HttpStatus.OK);
 	}
 	
 	@GetMapping (path = "/author/{author}")
@@ -67,5 +92,7 @@ public class BookController_TB {
 		//bookRepository_TB.findAuthor(author);
 		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findAuthor(author), HttpStatus.OK);
 	}
+	
+
 
 }
