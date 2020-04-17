@@ -44,6 +44,12 @@ public class Book_TB {
 	@Column(name = "EDITOR")
 	private String editor = "DTBV";
 	
+	@Column(name = "PRICE")
+	private double price = 20.5;
+	
+	@Column(name = "NUMBER_OF_ITEMS")
+	private int numberOfItems = 199;
+	
 
 	
 	
