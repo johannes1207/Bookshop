@@ -109,7 +109,13 @@
 				"name": "detail",
 				"pattern": "detail/{isbn}",
 				"target": ["detail"]
-			}],
+			}
+			,{
+				"name": "HomePage",
+				"pattern": "",
+				"target": ["Targetapp"]
+			}
+		],
 			"targets": {
 				"Targetapp": {
 					"viewType": "XML",
@@ -121,6 +127,11 @@
 				"detail": {
 					"viewId":"detail",
 					"viewName":"detail"
+				}
+				,
+				"app": {
+					"viewId":"app",
+					"viewName":"app"
 				}
 			}
 		}

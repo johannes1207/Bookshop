@@ -21,6 +21,7 @@
 				 <ObjectListItem
 		    icon="sap-icon://education"
 			title="{Title}"
+			
 			type="Active"
 			
 			number="{
@@ -37,6 +38,8 @@
 			<ObjectAttribute text="{Auhtor}" />
 			<ObjectAttribute text=" from {Author}  " />
 			<ObjectAttribute text="published {PublishingYear}" />
+			<ObjectAttribute text="ISBN: {Isbn}" />
+			
 		</ObjectListItem>
 				 
 			
