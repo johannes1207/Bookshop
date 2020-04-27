@@ -55,12 +55,12 @@
 				"sap.ui.core": {},
 				"sap.m": {}
 			}
-		},"config": {
+		},
+			"config": {
 			"sample": {
 				"files": [
-					"List.view.xml",
-					"List.controller.js",
-					"Formatter.js",
+					"app.view.xml",
+					"app.controller.js",
 					"manifest.json"
 				]
 			}
@@ -104,6 +104,11 @@
 				"name": "Routeapp",
 				"pattern": "Routeapp",
 				"target": ["Targetapp"]
+			}
+		,{
+				"name": "detail",
+				"pattern": "detail/{isbn}",
+				"target": ["detail"]
 			}],
 			"targets": {
 				"Targetapp": {
@@ -112,6 +117,10 @@
 					"clearControlAggregation": false,
 					"viewId": "app",
 					"viewName": "app"
+				},
+				"detail": {
+					"viewId":"detail",
+					"viewName":"detail"
 				}
 			}
 		}

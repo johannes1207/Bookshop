@@ -9,7 +9,7 @@ displayBlock="true"
 					<content>
 					
 					
-	   <List id="bookList"
+	 <!--    <List id="bookList"
 		items="{/}"
 		headerText="Books">
 		<ObjectListItem
@@ -29,22 +29,48 @@ displayBlock="true"
 			<ObjectAttribute title = "Publishing Year" text="{PublishingYear}" />
 			<ObjectAttribute title = "Editor" text="{Editor}" />
 		</ObjectListItem>
-	</List>
-					
-					
-					
-						
-						
-<!--  	 <List	id="bookList"
-		headerText="Books"
-		items="{/}"
-		
-		>
-		<items><StandardListItem title="{Title}"/></items>
-		
-		
-	
 	</List>-->
+					
+					
+					<!-- <List    id="bookList"
+        headerText="Books"
+        items="{/}"
+       
+        >
+        <items><StandardListItem title="{Title}"/></items>
+       
+       
+   
+    </List> -->
+						
+						
+	 <List
+		id="ShortProductList"
+		headerText="Books"
+		items="{/}">
+		<items>
+			
+				 
+				 <ObjectListItem
+			title="{Title}"
+			icon="sap-icon://course-book"
+			type="Active"
+			press="onItemPress"
+			number="{
+				parts:[{path:'Price'},'€'],
+				type: 'sap.ui.model.type.Currency',
+				formatOptions: {showMeasure: false}
+			}"
+			numberUnit="EUR">
+			
+			
+			<ObjectAttribute text=" from {Author}  " />
+			
+		</ObjectListItem>
+				 
+			
+		</items>
+			</List>
 						
 						
 					</content>

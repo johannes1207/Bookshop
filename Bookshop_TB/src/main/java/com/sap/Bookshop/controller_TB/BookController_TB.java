@@ -40,8 +40,7 @@ public class BookController_TB {
 		this.bookService_TB = bookService_TB;
 		this.bookRepository_TB = bookRepository_TB;
 		this.modelMapper = modelMapper;
-		bookService_TB.save(new Book_TB());
-		bookService_TB.save(new Book_TB());
+		
 		
 	}
 	
@@ -69,7 +68,7 @@ public class BookController_TB {
 		return new ResponseEntity(bookService_TB.updateBook(book), HttpStatus.OK);
 	}
 	
-	@DeleteMapping (path = "/book/{isbn}")
+	@DeleteMapping (path = "/bookd/{isbn}")
 	public ResponseEntity<?> deleteBook(@PathVariable int isbn) {
 		bookRepository_TB.deleteById(isbn);
 		return null;
@@ -87,6 +86,12 @@ public class BookController_TB {
 		//bookRepository_TB.findAuthor(author);
 		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findAuthor(author), HttpStatus.OK);
 	}
+	@GetMapping (path = "/book/{isbn}")
+	public ResponseEntity findBookByIsbn(@PathVariable int isbn) {
+		//bookRepository_TB.findAuthor(author);
+		return new ResponseEntity<List<Book_TB>>(bookRepository_TB.findBookByIsbn(isbn), HttpStatus.OK);
+	}
+	
 	
 
 
